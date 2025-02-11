@@ -14,7 +14,7 @@ export default {
         textGray: "var(--textGray)",
         textDark: "var(--textDark)",
         textLight: "var(--textLight)",
-        foreground: "var(--foreground)",
+        borderLight: "var(--borderLight)",
       },
     },
   },

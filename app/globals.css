@@ -8,6 +8,7 @@
   --textGray: #b3b3b3;
   --textDark: #0a0c11;
   --textLight: #fafafa;
+  --borderLight: #07373f;
 }
 
 /* @media (prefers-color-scheme: dark) {
