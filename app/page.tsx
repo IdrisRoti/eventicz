@@ -1,6 +1,9 @@
+import Events from "@/components/Events";
 
 export default function Home() {
   return (
-    <div className="text-red-500">Hi</div>
+    <div className="">
+      <Events />
+    </div>
   );
 }
