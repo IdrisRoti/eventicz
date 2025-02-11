@@ -4,10 +4,10 @@
 
 :root {
   --background: #02191d;
-  --foreground: #171717;
   --primary: #197686;
   --textGray: #b3b3b3;
   --textDark: #0a0c11;
+  --textLight: #fafafa;
 }
 
 /* @media (prefers-color-scheme: dark) {

@@ -13,6 +13,7 @@ export default {
         primary: "var(--primary)",
         textGray: "var(--textGray)",
         textDark: "var(--textDark)",
+        textLight: "var(--textLight)",
         foreground: "var(--foreground)",
       },
     },
