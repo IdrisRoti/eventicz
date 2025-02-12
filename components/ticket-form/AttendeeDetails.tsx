@@ -1,8 +1,22 @@
+"use client"
+
+import TicketFormContext from '@/context/TicketFormContext';
 import Image from 'next/image'
+import { useContext } from 'react';
 
 import { GoMail } from "react-icons/go";
 
 const AttendeeDetails = () => {
+    const {ticketDetails, updateTicketDetails} = useContext(TicketFormContext);
+
+    const handleInputChange = (name: string, value: string) => {
+        updateTicketDetails(name, value)
+        
+        if(typeof localStorage !== "undefined") {
+            localStorage.setItem("ticketForm", JSON.stringify({...ticketDetails, [name]: value}))
+        }
+    }
+
   return (
     <div className='text-textLight'>
         <div className="w-full p-6 pb-12 rounded-3xl border border-borderLight bg-[#052228]">
@@ -23,18 +37,18 @@ const AttendeeDetails = () => {
             <form className='flex flex-col gap-8'>
                 <div className="flex flex-col gap-2">
                     <label htmlFor="name">Enter your name *</label>
-                    <input className='border border-borderLight p-3 rounded-xl bg-transparent outline-none focus:border-primary' type="text" id="name" />
+                    <input value={ticketDetails.name} onChange={(e) => handleInputChange("name", e.target.value)} className='border border-borderLight p-3 rounded-xl bg-transparent outline-none focus:border-primary' type="text" id="name" />
                 </div>
                 <div className="flex flex-col gap-2">
                     <label htmlFor="email">Enter your email *</label>
                     <div className="w-full relative">
                         <GoMail className='size-5 absolute top-1/2 -translate-y-1/2 left-3' />
-                        <input placeholder='hello@avioflagos.io' className='w-full border border-borderLight p-3 pl-10 rounded-xl bg-transparent outline-none focus:border-primary' type="email" id="email" />
+                        <input value={ticketDetails.email} onChange={(e) => handleInputChange("email", e.target.value)} placeholder='hello@avioflagos.io' className='w-full border border-borderLight p-3 pl-10 rounded-xl bg-transparent outline-none focus:border-primary' type="email" id="email" />
                     </div>
                 </div>
                 <div className="flex flex-col gap-2">
                     <label htmlFor="request">Special Request?</label>
-                    <textarea placeholder='Textarea' className='border border-borderLight p-3 rounded-xl bg-transparent outline-none focus:border-primary' id="request" />
+                    <textarea value={ticketDetails.request} onChange={(e) => handleInputChange("request", e.target.value)} placeholder='Textarea' className='border border-borderLight p-3 rounded-xl bg-transparent outline-none focus:border-primary' id="request" />
                 </div>
             </form>
     </div>

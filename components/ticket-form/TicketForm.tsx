@@ -1,8 +1,9 @@
 "use client"
 
-import { useState } from "react"
+import { useContext, useState } from "react"
 import AttendeeDetails from "./AttendeeDetails"
 import TicketSelection from "./TicketSelection"
+import TicketFormContext from "@/context/TicketFormContext"
 
 const formSteps = [
     {
@@ -20,10 +21,16 @@ const formSteps = [
 const TicketForm = () => {
     const [formStep, setFormStep] = useState(1);
 
-    const handleFormStepChange = (type: "Next" | "Back") => {
+    const handleFormStepChange = (type: "Next" | "Back" | "Submit") => {
         if(type === "Next") setFormStep(prev => prev + 1);
         if(type === "Back") setFormStep(prev => prev - 1);
+        if(type === "Submit") {
+            if(!ticketDetails.name || !ticketDetails.email) alert("Please fill the required fields")
+            console.log(ticketDetails)
+        }
     }
+
+    const {ticketDetails} = useContext(TicketFormContext)
 
   return (
     <div className="bg-[#08252B] md:bg-[#041E23] rounded-[2rem] md:rounded-[2.5rem] border-[#0E464F] p-6 md:p-12 mt-28 md:mt-32 max-w-[43.75rem] mx-auto">
@@ -60,7 +67,7 @@ const TicketForm = () => {
                     formStep === 1 ? (
                         <button onClick={() => handleFormStepChange("Next")} className="h-12 md:h-full w-full border border-[#24A0B5] text-white bg-[#24A0B5] rounded-md hover:opacity-60 transition max-md:-order-1">Next</button>
                     ) : (
-                        <button onClick={() => handleFormStepChange("Next")} className="h-12 md:h-full w-full border border-[#24A0B5] text-white bg-[#24A0B5] rounded-md hover:opacity-60 transition max-md:-order-1">Get My Free Ticket</button>
+                        <button onClick={() => handleFormStepChange("Submit")} className="h-12 md:h-full w-full border border-[#24A0B5] text-white bg-[#24A0B5] rounded-md hover:opacity-60 transition max-md:-order-1">Get My Free Ticket</button>
                     )
                 }
             </div>

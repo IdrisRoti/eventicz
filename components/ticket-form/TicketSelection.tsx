@@ -1,7 +1,10 @@
+import TicketFormContext from "@/context/TicketFormContext"
+import { useContext } from "react"
+
 const ticketTypes = [
     {
         id: 1,
-        type: "Regular",
+        type: "regular",
         price: null,
         amountLeft: 20,
     },
@@ -17,9 +20,19 @@ const ticketTypes = [
         price: 150,
         amountLeft: 20,
     },
-]
+] as const
 
 const TicketSelection = () => {
+    const {ticketDetails, updateTicketDetails} = useContext(TicketFormContext)
+
+    const updateTicketType = (type: "regular" | "vip" | "vvip") => {
+        updateTicketDetails("type", type)
+
+        if(typeof localStorage !== "undefined") {
+            localStorage.setItem("ticketForm", JSON.stringify({...ticketDetails, type: type}))
+        }
+    }
+
   return (
     <div>
             <section className='border border-borderLight rounded-3xl p-4 md:p-6 text-center text-textLight'>
@@ -39,7 +52,8 @@ const TicketSelection = () => {
                         ticketTypes.map(({id, type, price, amountLeft}) => {
                             return (
                                     <button
-                                        className={`col-span-full md:col-span-1 border-2 border-[#197686] p-3 rounded-lg text-left ${id === 1 && "bg-[#12464E] border-[#197686]"}`} 
+                                        onClick={() => updateTicketType(type)}
+                                        className={`col-span-full md:col-span-1 border-2 border-[#197686] p-3 rounded-lg text-left ${ticketDetails.type === type && "bg-[#12464E] border-[#197686]"}`} 
                                         key={id}>
                                             <div className="text-xl rounded-md mb-3 font-semibold">{price ? `$${price}` : "Free"}</div>
                                             <p className="uppercase ">{type} access</p>
@@ -50,7 +64,7 @@ const TicketSelection = () => {
                     }
                 </div>
                 <div className="my-8 flex flex-col gap-2">
-                    <label htmlFor="Number of tickets" className='text-textLight mb-2 '> Number of Tickets</label>
+                    <label htmlFor="Number of tickets" className='text-textLight mb-2'>Number of Tickets</label>
                     <select className="bg-transparent border border-borderLight w-full rounded-md h-12" name="" id="Number of tickets">
                         <option value="1">1</option>
                     </select>
