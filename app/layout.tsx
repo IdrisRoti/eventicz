@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Roboto, Road_Rage } from "next/font/google";
 import "./globals.css";
+import TicketFormProvider from "@/providers/TicketFormProvider";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -26,7 +27,9 @@ export default function RootLayout({
       <body
         className={`${roadRage.className} ${roboto.className} antialiased`}
       >
-        {children}
+        <TicketFormProvider>
+          {children}
+        </TicketFormProvider>
       </body>
     </html>
   );

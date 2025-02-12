@@ -18,7 +18,7 @@ const formSteps = [
 ]
 
 const TicketForm = () => {
-    const [formStep, setFormStep] = useState(1)
+    const [formStep, setFormStep] = useState(1);
 
     const handleFormStepChange = (type: "Next" | "Back") => {
         if(type === "Next") setFormStep(prev => prev + 1);
@@ -36,7 +36,8 @@ const TicketForm = () => {
                 style={{
                     width: `${formStep/formSteps.length * 100}%`
                 }} 
-                className="h-full bg-[#24A0B5]" />
+                className="h-full bg-[#24A0B5]" 
+            />
         </div>
         <div className="mt-8 md:bg-[#08252B] md:border border-[#0E464F] rounded-[2rem] md:p-6">
             {
@@ -55,7 +56,13 @@ const TicketForm = () => {
                         <button onClick={() => handleFormStepChange("Back")} className="h-12 md:h-full w-full border border-[#24A0B5] text-[#24A0B5] rounded-md hover:opacity-60 transition">Back</button>
                     )
                 }
-                <button onClick={() => handleFormStepChange("Next")} className="h-12 md:h-full w-full border border-[#24A0B5] text-white bg-[#24A0B5] rounded-md hover:opacity-60 transition max-md:-order-1">Next</button>
+                {
+                    formStep === 1 ? (
+                        <button onClick={() => handleFormStepChange("Next")} className="h-12 md:h-full w-full border border-[#24A0B5] text-white bg-[#24A0B5] rounded-md hover:opacity-60 transition max-md:-order-1">Next</button>
+                    ) : (
+                        <button onClick={() => handleFormStepChange("Next")} className="h-12 md:h-full w-full border border-[#24A0B5] text-white bg-[#24A0B5] rounded-md hover:opacity-60 transition max-md:-order-1">Get My Free Ticket</button>
+                    )
+                }
             </div>
         </div>
     </div>
