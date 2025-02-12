@@ -23,7 +23,7 @@ const TicketSelection = () => {
   return (
     <div>
             <section className='border border-borderLight rounded-3xl p-4 md:p-6 text-center text-textLight'>
-                <h2 className='text-5xl md:text-6xl '>Techember Fest ”25</h2>
+                <h2 className='text-5xl md:text-6xl font-road-rage'>Techember Fest ”25</h2>
                 <p className='text-sm md:text-base  py-2 max-w-[21.25rem] mx-auto'>Join us for an unforgettable experience at [Event Name]! Secure your spot now.</p>
                 <div className="flex flex-col md:flex-row items-center justify-center gap-1 md:gap-4  max-md:mt-6">
                     <span>📍 [Event Location]</span>
@@ -41,7 +41,7 @@ const TicketSelection = () => {
                                     <button
                                         className={`col-span-full md:col-span-1 border-2 border-[#197686] p-3 rounded-lg text-left ${id === 1 && "bg-[#12464E] border-[#197686]"}`} 
                                         key={id}>
-                                            <div className="text-xl rounded-md mb-3">{price ? `$${price}` : "Free"}</div>
+                                            <div className="text-xl rounded-md mb-3 font-semibold">{price ? `$${price}` : "Free"}</div>
                                             <p className="uppercase ">{type} access</p>
                                             <p className="text-sm w-fit ">{amountLeft}/52</p>
                                     </button>

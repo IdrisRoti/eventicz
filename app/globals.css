@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Road+Rage&display=swap");
+
 :root {
   --background: #02191d;
   --primary: #197686;
@@ -11,15 +13,14 @@
   --borderLight: #07373f;
 }
 
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-} */
-
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.font-road-rage {
+  font-family: "Road Rage", serif;
+  font-weight: 400;
+  font-style: normal;
 }
