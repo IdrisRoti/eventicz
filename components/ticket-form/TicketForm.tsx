@@ -14,11 +14,11 @@ const TicketForm = () => {
                 }} 
                 className="h-full bg-[#24A0B5]" />
         </div>
-        <div className="mt-6 md:bg-[#08252B] md:border border-[#0E464F] rounded-[2rem] md:p-6">
+        <div className="mt-8 md:bg-[#08252B] md:border border-[#0E464F] rounded-[2rem] md:p-6">
             <TicketSelection />
-            <div className="md:bg-[#041E23] md:border border-[#0E464F] rounded-3xl md:h-12 flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8 mt-8">
-                <button className="h-12 md:h-full max-md:w-full border border-[#24A0B5] text-[#24A0B5] underline w-[13.375rem] rounded-md">Cancel</button>
-                <button className="h-12 md:h-full max-md:w-full border border-[#24A0B5] text-white bg-[#24A0B5] underline w-[13.375rem] rounded-md">Next</button>
+            <div className="rounded-3xl md:h-12 flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8 mt-8">
+                <button className="h-12 md:h-full w-full border border-[#24A0B5] text-[#24A0B5] rounded-md">Cancel</button>
+                <button className="h-12 md:h-full w-full border border-[#24A0B5] text-white bg-[#24A0B5] rounded-md">Next</button>
             </div>
         </div>
     </div>
