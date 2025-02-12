@@ -29,11 +29,24 @@ const TicketFormProvider = ({children}:{children: React.ReactNode}) => {
         setTicketDetails((prev) => ({...prev, [name]: value}))
     }
 
+    const resetTicketDetails = () => {
+        setTicketDetails({
+            type: "regular",
+            name: "",
+            email: "",
+            request: "",
+        })
+
+        if(typeof localStorage !== "undefined") {
+            localStorage.removeItem("ticketForm");
+        }
+    }
+
     if(!isMounted){
         return <></>
     }
 
-    return <TicketFormContext.Provider value={{ticketDetails, updateTicketDetails}}>{children}</TicketFormContext.Provider>
+    return <TicketFormContext.Provider value={{ticketDetails, updateTicketDetails, resetTicketDetails}}>{children}</TicketFormContext.Provider>
 }
 
 export default TicketFormProvider;

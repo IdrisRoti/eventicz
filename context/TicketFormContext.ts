@@ -9,7 +9,8 @@ export interface ITicket {
 
 export interface ITicketFormContext {
     ticketDetails: ITicket,
-    updateTicketDetails: (name: string, value: string) => void
+    updateTicketDetails: (name: string, value: string) => void,
+    resetTicketDetails: () => void
 }
 
 const TicketFormContext = createContext<ITicketFormContext>({
@@ -19,7 +20,8 @@ const TicketFormContext = createContext<ITicketFormContext>({
         email: "",
         request: "",
     },
-    updateTicketDetails: () => null
+    updateTicketDetails: () => null,
+    resetTicketDetails: () => null
 })
 
 export default TicketFormContext;

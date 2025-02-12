@@ -1,8 +1,9 @@
 "use client"
 
-import TicketFormContext from '@/context/TicketFormContext';
 import Image from 'next/image'
 import { useContext } from 'react';
+
+import TicketFormContext from '@/context/TicketFormContext';
 
 import { GoMail } from "react-icons/go";
 
