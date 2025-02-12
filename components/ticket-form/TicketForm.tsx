@@ -4,7 +4,7 @@ const TicketForm = () => {
   return (
     <div className="bg-[#08252B] md:bg-[#041E23] rounded-[2rem] md:rounded-[2.5rem] border-[#0E464F] p-6 md:p-12 mt-28 md:mt-32 max-w-[43.75rem] mx-auto">
         <div className="flex flex-col md:flex-row justify-between md:items-center gap-3">
-            <h1 className="text-2xl md:text-3xl text-white underline">Ticket Selection</h1>
+            <h1 className="text-2xl md:text-3xl text-white underline font-jeju">Ticket Selection</h1>
             <span className="text-textLight">Step 1/3</span>
         </div>
         <div className="relative w-full h-1 rounded-[5px] bg-[#0E464F] overflow-hidden mt-4">
