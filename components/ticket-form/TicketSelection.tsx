@@ -35,14 +35,17 @@ const TicketSelection = () => {
 
   return (
     <div>
-            <section className='border border-borderLight rounded-3xl p-4 md:p-6 text-center text-textLight'>
-                <h2 className='text-5xl md:text-6xl font-road-rage'>Techember Fest ”25</h2>
-                <p className='text-sm md:text-base  py-2 max-w-[21.25rem] mx-auto'>Join us for an unforgettable experience at [Event Name]! Secure your spot now.</p>
-                <div className="flex flex-col md:flex-row items-center justify-center gap-1 md:gap-4  max-md:mt-6">
-                    <span>📍 [Event Location]</span>
-                    <span className="hidden md:block">| |</span>
-                    <span>March 15, 2025 | 7:00 PM</span>
+            <section className='relative border border-borderLight rounded-3xl p-4 md:p-6 text-center text-textLight overflow-hidden'>
+                <div className="relative z-10">
+                    <h2 className='text-5xl md:text-6xl font-road-rage'>Techember Fest ”25</h2>
+                    <p className='text-sm md:text-base  py-2 max-w-[21.25rem] mx-auto'>Join us for an unforgettable experience at [Event Name]! Secure your spot now.</p>
+                    <div className="flex flex-col md:flex-row items-center justify-center gap-1 md:gap-4 max-md:mt-6">
+                        <span>📍 [Event Location]</span>
+                        <span className="hidden md:block">| |</span>
+                        <span>March 15, 2025 | 7:00 PM</span>
+                    </div>
                 </div>
+                <div className="w-2/3 h-[80%] bg-[#07373f] top-0 left-0 absolute rounded-full blur-[20px]" />
             </section>
             <div className='bg-borderLight h-1 w-full my-8' />
             <section className="text-textLight">

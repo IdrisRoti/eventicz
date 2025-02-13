@@ -66,7 +66,8 @@ const TicketForm = () => {
 
 
   return (
-    <div className="bg-[#08252B] md:bg-[#041E23] rounded-[2rem] md:rounded-[2.5rem] border border-[#0E464F] p-6 md:p-12 mt-28 md:mt-32 max-w-[43.75rem] mx-auto">
+    <>
+    <div className="bg-[#08252B] md:bg-[#041E23] rounded-[2rem] md:rounded-[2.5rem] border border-[#0E464F] p-6 md:p-12 mt-28 md:mt-32 max-w-[43.75rem] mx-auto relative z-10">
         <div className="flex flex-row justify-between md:items-center gap-3">
             <h1 className="text-2xl md:text-3xl text-white capitalize font-jeju">{formSteps[formStep - 1].label}</h1>
             <span className="text-textLight">Step {formStep}/{formSteps.length}</span>
@@ -98,6 +99,8 @@ const TicketForm = () => {
             </div>
         </div>
     </div>
+    <div className="bg-primary w-full h-[10rem] absolute rounded-full bottom-0 left-0 blur-3xl opacity-30 hidden md:block" />
+    </>
   )
 }
 
