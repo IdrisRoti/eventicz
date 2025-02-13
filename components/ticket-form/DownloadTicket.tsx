@@ -4,11 +4,28 @@ import TicketFormContext from "@/context/TicketFormContext"
 import Image from "next/image"
 import { useContext } from "react"
 
+import {motion} from "motion/react"
+
 const DownloadTicket = () => {
     const {ticketDetails} = useContext(TicketFormContext)
 
   return (
-    <div className="text-white">
+    <motion.div
+        initial={{
+            x: "100%",
+            opacity: 0
+        }}
+        animate={{
+            x: 0,
+            opacity: 1,
+            transition: { duration: .5, delay: .2}
+        }} 
+        exit={{
+            x: "-100%",
+            opacity: 0,
+            transition: { duration: .3}
+        }}  
+        className="text-white">
         <h2 className="text-2xl md:text-3xl text-center">Your Ticket is Booked!</h2>
         <p className="text-textLight text-center mt-4 mb-8">Check your email for a copy or you can <button className="text-white">download</button></p>
         <div className="flex justify-center md:p-6">
@@ -23,12 +40,12 @@ const DownloadTicket = () => {
                     <p className="text-[10px]">📍 04 Rumens road, Ikoyi, Lagos</p>
                     <p className="text-[10px]">📅 March 15, 2025 | 7:00 PM</p>
                     <div className="size-36 border-4 border-[#24A0B5]/50 rounded-xl mx-auto my-5 overflow-hidden relative">
-                                <Image 
+                            { ticketDetails.url && <Image 
                                     src={ticketDetails.url}
                                     alt="User Image"
                                     fill
                                     className='object-cover'
-                                />                    
+                                />   }                 
                     </div>
                     <div className="bg-[#08343C] border border-[#133D44] w-full rounded-lg p-1 text-left">
                         <div className="flex items-center">
@@ -66,7 +83,7 @@ const DownloadTicket = () => {
                 />
             </div>
         </div>
-    </div>
+    </motion.div>
   )
 }
 

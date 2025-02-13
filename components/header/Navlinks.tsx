@@ -4,7 +4,7 @@ const navlinks = [
     {
         id: 1,
         label: "Events",
-        href: "/events"
+        href: "/"
     },
     {
         id: 2,

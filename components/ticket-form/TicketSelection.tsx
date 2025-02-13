@@ -1,5 +1,9 @@
+"use client"
+
 import TicketFormContext from "@/context/TicketFormContext"
 import { useContext } from "react"
+
+import {motion} from "motion/react"
 
 const ticketTypes = [
     {
@@ -34,7 +38,22 @@ const TicketSelection = () => {
     }
 
   return (
-    <div>
+        <motion.div
+            initial={{
+                x: "-100%",
+                opacity: 1
+            }}
+            animate={{
+                x: 0,
+                opacity: 1,
+                transition: { duration: .5, delay: .3}
+            }}
+            exit={{
+                x: "-100%",
+                opacity: 0,
+                transition: { duration: .3}
+            }}
+        >
             <section className='relative border border-borderLight rounded-3xl p-4 md:p-6 text-center text-textLight overflow-hidden'>
                 <div className="relative z-10">
                     <h2 className='text-5xl md:text-6xl font-road-rage'>Techember Fest ”25</h2>
@@ -52,16 +71,26 @@ const TicketSelection = () => {
                 <h3 className='text-textLight mb-3 '>Select Ticket Type:</h3>
                 <div className="grid grid-cols-3 items-center gap-4 p-4 border border-borderLight bg-[#052228] rounded-3xl">
                     {
-                        ticketTypes.map(({id, type, price, amountLeft}) => {
+                        ticketTypes.map(({id, type, price, amountLeft}, i) => {
                             return (
-                                    <button
+                                    <motion.button
+                                        initial={{
+                                            opacity: 0,
+                                            y: 20,
+                                        }} 
+                                        whileInView={{
+                                            opacity: 1,
+                                            y: 0,
+                                        }} 
+                                        viewport={{once: true}}
+                                        transition={{ duration: .5, ease: "easeInOut", delay:i*0.2 }}
                                         onClick={() => updateTicketType(type)}
-                                        className={`col-span-full md:col-span-1 border-2 border-[#197686] p-3 rounded-lg text-left ${ticketDetails.type === type && "bg-[#12464E] border-[#197686]"}`} 
+                                        className={`col-span-full md:col-span-1 border-2 border-[#197686] p-3 rounded-lg text-left transition duration-500 ${ticketDetails.type === type ? "bg-[#12464E] border-[#197686]" : "bg-transparent hover:bg-[#12464E]/50"}`} 
                                         key={id}>
                                             <div className="text-xl rounded-md mb-3 font-semibold">{price ? `$${price}` : "Free"}</div>
                                             <p className="uppercase ">{type} access</p>
                                             <p className="text-sm w-fit ">{amountLeft}/52</p>
-                                    </button>
+                                    </motion.button>
                             )
                         })
                     }
@@ -73,7 +102,7 @@ const TicketSelection = () => {
                     </select>
                 </div>
             </section>
-    </div>
+        </motion.div>
   )
 }
 

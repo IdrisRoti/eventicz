@@ -7,7 +7,7 @@ const Header = () => {
         <div className="flex items-center justify-between py-3 px-4 h-full">
             <Logo />
             <Navlinks />
-            <button className='bg-white rounded-xl px-6 py-4 uppercase flex items-center gap-1 text-textDark'>
+            <button className='bg-white hover:bg-[#24A0B5] hover:text-white transition duration-500 rounded-xl px-6 py-4 uppercase flex items-center gap-1 text-textDark'>
               <span className='text-sm md:text-base'>My tickets</span>
             </button>
         </div>

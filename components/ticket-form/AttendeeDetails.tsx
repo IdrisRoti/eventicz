@@ -9,6 +9,7 @@ import { GoMail } from "react-icons/go";
 import { CldUploadButton, CloudinaryUploadWidgetResults } from 'next-cloudinary';
 import { useRouter } from 'next/navigation';
 import { z } from 'zod';
+import { motion } from 'motion/react';
 
 export const formSchema = z.object({
     name: z.string().min(2, "Minimum of 2 characters!"),
@@ -53,11 +54,26 @@ const AttendeeDetails = () => {
     }
 
   return (
-    <div className='text-textLight'>
+    <motion.div
+        initial={{
+            x: "100%",
+            opacity: 0
+        }}
+        animate={{
+            x: 0,
+            opacity: 1,
+            transition: { duration: .5, delay: .2}
+        }} 
+        exit={{
+            x: "-100%",
+            opacity: 0,
+            transition: { duration: .3}
+        }} 
+        className='text-textLight'>
         <div className="w-full p-6 pb-12 rounded-3xl border border-borderLight bg-[#052228]">
             <h2 className='mb-8 text-textLight'>Upload Profile Photo</h2>
             <div className="md:bg-background h-[12.5rem] relative">
-                <div className="cursor-pointer rounded-[2rem] bg-[#0E464F] border-4 border-[#24A0B5] text-white size-60 absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 overflow-hidden">
+                <div className="cursor-pointer rounded-[2rem] bg-[#0E464F] hover:bg-[#0E464F]/60 transition duration-500 border-4 border-[#24A0B5] text-white size-60 absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 overflow-hidden">
                     {
                         ticketDetails.url ?(
                             <div className='size-60 relative group'>
@@ -113,17 +129,17 @@ const AttendeeDetails = () => {
                     <div className="w-full relative">
                         <GoMail className='size-5 absolute top-1/2 -translate-y-1/2 left-3' />
                         <input required value={ticketDetails.email} onChange={(e) => handleInputChange("email", e.target.value)} placeholder='hello@avioflagos.io' className='w-full border border-borderLight p-3 pl-10 rounded-xl bg-transparent outline-none focus:border-primary' type="email" id="email" />
-                        { errors.email && (
-                            <span className="text-red-500 text-xs">{errors.email}</span>
-                        )}
                     </div>
+                    { errors.email && (
+                        <span className="text-red-500 text-xs">{errors.email}</span>
+                    )}
                 </div>
                 <div className="flex flex-col gap-2">
                     <label htmlFor="request">Special Request?</label>
                     <textarea value={ticketDetails.request} onChange={(e) => handleInputChange("request", e.target.value)} placeholder='Textarea' className='border border-borderLight p-3 rounded-xl bg-transparent outline-none focus:border-primary' id="request" />
                 </div>
             </form>
-    </div>
+    </motion.div>
   )
 }
 
