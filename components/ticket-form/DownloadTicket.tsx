@@ -18,7 +18,7 @@ const DownloadTicket = () => {
         animate={{
             x: 0,
             opacity: 1,
-            transition: { duration: .5, delay: .2}
+            transition: { duration: .5, delay: .3}
         }} 
         exit={{
             x: "-100%",
