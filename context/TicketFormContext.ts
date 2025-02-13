@@ -5,6 +5,7 @@ export interface ITicket {
     name: string,
     email: string,
     request: string,
+    url: string
 }
 
 export interface ITicketFormContext {
@@ -19,6 +20,7 @@ const TicketFormContext = createContext<ITicketFormContext>({
         name: "",
         email: "",
         request: "",
+        url: ""
     },
     updateTicketDetails: () => null,
     resetTicketDetails: () => null

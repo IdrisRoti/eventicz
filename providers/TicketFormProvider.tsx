@@ -14,6 +14,7 @@ const TicketFormProvider = ({children}:{children: React.ReactNode}) => {
                 name: "",
                 email: "",
                 request: "",
+                url: ""
             }
 
     const [ticketDetails, setTicketDetails] = useState<ITicket>(ticketDetailsFromStorage)
@@ -35,6 +36,7 @@ const TicketFormProvider = ({children}:{children: React.ReactNode}) => {
             name: "",
             email: "",
             request: "",
+            url: ""
         })
 
         if(typeof localStorage !== "undefined") {

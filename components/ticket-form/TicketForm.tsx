@@ -40,7 +40,7 @@ const TicketForm = () => {
         }
 
         if(type === "Submit") {
-            if(!ticketDetails.name || !ticketDetails.email) {
+            if(!ticketDetails.name || !ticketDetails.email || !ticketDetails.url) {
                 alert("Please fill the required fields")
                 return
             }
