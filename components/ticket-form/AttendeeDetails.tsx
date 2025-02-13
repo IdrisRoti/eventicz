@@ -7,9 +7,12 @@ import TicketFormContext from '@/context/TicketFormContext';
 
 import { GoMail } from "react-icons/go";
 import { CldUploadButton, CloudinaryUploadWidgetResults } from 'next-cloudinary';
+import { useRouter } from 'next/navigation';
 
 const AttendeeDetails = () => {
     const {ticketDetails, updateTicketDetails} = useContext(TicketFormContext);
+
+    const router = useRouter();
 
     const handleInputChange = (name: string, value: string) => {
         updateTicketDetails(name, value)
@@ -30,6 +33,8 @@ const AttendeeDetails = () => {
             if(typeof localStorage !== "undefined") {
                 localStorage.setItem("ticketForm", JSON.stringify({...ticketDetails, url}))
             }
+
+            router.refresh()
         }
     }
 
@@ -69,7 +74,10 @@ const AttendeeDetails = () => {
                         ) : (
                                 <CldUploadButton
                                     uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET}
-                                    onSuccess={handleImageUpload}
+                                    onSuccess={(result, {close}) => {
+                                        handleImageUpload(result);
+                                        close();
+                                    }}
                                     className='flex flex-col items-center justify-center gap-4 w-full h-full'
                                 >
                                     <Image
