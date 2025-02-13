@@ -65,7 +65,7 @@ const DownloadTicket = () => {
                             </div>
                             <div className="w-full border-l border-[#12464E] pl-2.5 p-1">
                                 <h4 className="text-[10px] opacity-[33%] mb-1">Ticket for</h4>
-                                <p className="text-[12px] font-bold">1</p>
+                                <p className="text-[12px] font-bold">{ticketDetails.noOfTickets}</p>
                             </div>
                         </div>
                         <div className="w-full p-2">

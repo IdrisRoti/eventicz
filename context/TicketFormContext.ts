@@ -7,6 +7,7 @@ export interface ITicket {
     name: string,
     email: string,
     request: string,
+    noOfTickets: number,
     url: string,
 }
 
@@ -24,6 +25,7 @@ const TicketFormContext = createContext<ITicketFormContext>({
         name: "",
         email: "",
         request: "",
+        noOfTickets: 1,
         url: "",
     },
     errors: {},

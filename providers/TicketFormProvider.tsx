@@ -15,6 +15,7 @@ const TicketFormProvider = ({children}:{children: React.ReactNode}) => {
                 name: "",
                 email: "",
                 request: "",
+                noOfTickets: 1,
                 url: ""
             }
 
@@ -33,7 +34,7 @@ const TicketFormProvider = ({children}:{children: React.ReactNode}) => {
         setIsMounted(true)
     }, [])
 
-    const updateTicketDetails = (name: string, value: string) => {
+    const updateTicketDetails = (name: string, value: string | number) => {
         setTicketDetails((prev) => ({...prev, [name]: value}))
     }
 
@@ -43,7 +44,8 @@ const TicketFormProvider = ({children}:{children: React.ReactNode}) => {
             name: "",
             email: "",
             request: "",
-            url: ""
+            noOfTickets: 1,
+            url: "",
         })
 
         if(typeof localStorage !== "undefined") {

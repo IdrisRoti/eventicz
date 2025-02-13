@@ -37,6 +37,14 @@ const TicketSelection = () => {
         }
     }
 
+    const updateNoOfTickets = (value:string) => {
+        updateTicketDetails("noOfTickets", value)
+
+        if(typeof localStorage !== "undefined") {
+            localStorage.setItem("ticketForm", JSON.stringify({...ticketDetails, noOfTickets: value}))
+        }
+    }
+
   return (
         <motion.div
             initial={{
@@ -97,8 +105,10 @@ const TicketSelection = () => {
                 </div>
                 <div className="my-8 flex flex-col gap-2">
                     <label htmlFor="Number of tickets" className='text-textLight mb-2'>Number of Tickets</label>
-                    <select className="bg-transparent border border-borderLight w-full rounded-md h-12" name="" id="Number of tickets">
-                        <option value="1">1</option>
+                    <select value={ticketDetails.noOfTickets} onChange={(e) => updateNoOfTickets(e.target.value)} className="bg-transparent border border-borderLight w-full rounded-md h-12" name="" id="Number of tickets">
+                        <option className="bg-background" value={1}>1</option>
+                        <option className="bg-background" value={2}>2</option>
+                        <option className="bg-background" value={3}>3</option>
                     </select>
                 </div>
             </section>

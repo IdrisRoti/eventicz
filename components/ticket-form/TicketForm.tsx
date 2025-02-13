@@ -53,7 +53,7 @@ const TicketForm = () => {
                     name: errorMessages.name?._errors[0],
                     email: errorMessages.email?._errors[0]
                 })
-                return
+                return;
             } else {
                 if(!ticketDetails.url) {
                     toast.error("Please add your image!");
