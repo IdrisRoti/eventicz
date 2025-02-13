@@ -56,7 +56,7 @@ const TicketSelection = () => {
         >
             <section className='relative border border-borderLight rounded-3xl p-4 md:p-6 text-center text-textLight overflow-hidden'>
                 <div className="relative z-10">
-                    <h2 className='text-5xl md:text-6xl font-road-rage'>Techember Fest ”25</h2>
+                    <h2 className='text-4xl md:text-6xl font-road-rage'>Techember Fest ”25</h2>
                     <p className='text-sm md:text-base  py-2 max-w-[21.25rem] mx-auto'>Join us for an unforgettable experience at [Event Name]! Secure your spot now.</p>
                     <div className="flex flex-col md:flex-row items-center justify-center gap-1 md:gap-4 max-md:mt-6">
                         <span>📍 [Event Location]</span>
