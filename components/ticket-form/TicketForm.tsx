@@ -3,9 +3,10 @@
 import { useContext, useState } from "react"
 
 import TicketFormContext from "@/context/TicketFormContext"
-import AttendeeDetails from "./AttendeeDetails"
+import AttendeeDetails, { formSchema } from "./AttendeeDetails"
 import TicketSelection from "./TicketSelection"
 import DownloadTicket from "./DownloadTicket"
+import toast from "react-hot-toast"
 
 const formSteps = [
     {
@@ -28,7 +29,7 @@ const formSteps = [
 const TicketForm = () => {
     const [formStep, setFormStep] = useState(1);
 
-    const {ticketDetails, resetTicketDetails} = useContext(TicketFormContext)
+    const {ticketDetails, resetTicketDetails, updateErrors} = useContext(TicketFormContext);
 
     const handleFormStepChange = (type: "Next" | "Back" | "Submit" | "reset") => {
         if(type === "Next") setFormStep(prev => prev + 1);
@@ -40,12 +41,26 @@ const TicketForm = () => {
         }
 
         if(type === "Submit") {
-            if(!ticketDetails.name || !ticketDetails.email || !ticketDetails.url) {
-                alert("Please fill the required fields")
+            const {name, email} = ticketDetails
+            const formatInput = formSchema.safeParse({name, email});
+
+            if(!formatInput.success){
+                const errorMessages = formatInput.error.format();
+                updateErrors({
+                    name: errorMessages.name?._errors[0],
+                    email: errorMessages.email?._errors[0]
+                })
                 return
+            } else {
+                if(!ticketDetails.url) {
+                    toast.error("Please add your image!");
+                    return
+                }
+
+                setFormStep(prev => prev + 1);
+                updateErrors({})
             }
             console.log(ticketDetails)
-            setFormStep(prev => prev + 1);
         }
     }
 
@@ -69,7 +84,6 @@ const TicketForm = () => {
                 formSteps.map(({step, component: Component}) => (
                     step === formStep ? (
                         <Component key={step} />
-
                     ) : null
                 ))
             }
@@ -80,7 +94,7 @@ const TicketForm = () => {
                 
                 { formStep === 1 && <button onClick={() => handleFormStepChange("Next")} className="font-jeju h-12 md:h-full w-full border border-[#24A0B5] text-white bg-[#24A0B5] rounded-md hover:opacity-60 transition max-md:-order-1">Next</button>}
                 { formStep === 2 && <button onClick={() => handleFormStepChange("Submit")} className="font-jeju h-12 md:h-full w-full border border-[#24A0B5] text-white bg-[#24A0B5] rounded-md hover:opacity-60 transition max-md:-order-1">Get My Free Ticket</button>}
-                { formStep === 3 && <button onClick={() => alert("Ticket Downloaded")} className="font-jeju h-12 md:h-full w-full border border-[#24A0B5] text-white bg-[#24A0B5] rounded-md hover:opacity-60 transition max-md:-order-1">Download Ticket</button>}
+                { formStep === 3 && <button onClick={() => toast.success("Ticket Downloaded")} className="font-jeju h-12 md:h-full w-full border border-[#24A0B5] text-white bg-[#24A0B5] rounded-md hover:opacity-60 transition max-md:-order-1">Download Ticket</button>}
             </div>
         </div>
     </div>

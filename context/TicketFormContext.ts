@@ -1,17 +1,21 @@
 import { createContext } from "react";
 
+export type TErrors = { name?: string; email?: string }
+
 export interface ITicket {
     type: "regular" | "vip" | "vvip",
     name: string,
     email: string,
     request: string,
-    url: string
+    url: string,
 }
 
 export interface ITicketFormContext {
     ticketDetails: ITicket,
     updateTicketDetails: (name: string, value: string) => void,
-    resetTicketDetails: () => void
+    resetTicketDetails: () => void,
+    errors: TErrors
+    updateErrors: (error: TErrors) => void
 }
 
 const TicketFormContext = createContext<ITicketFormContext>({
@@ -20,8 +24,10 @@ const TicketFormContext = createContext<ITicketFormContext>({
         name: "",
         email: "",
         request: "",
-        url: ""
+        url: "",
     },
+    errors: {},
+    updateErrors: () => null,
     updateTicketDetails: () => null,
     resetTicketDetails: () => null
 })

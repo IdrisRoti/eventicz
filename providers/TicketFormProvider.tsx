@@ -1,8 +1,9 @@
 "use client"
 
+
 import { useEffect, useState } from "react"
 
-import TicketFormContext, { ITicket } from "@/context/TicketFormContext"
+import TicketFormContext, { ITicket, TErrors } from "@/context/TicketFormContext"
 
 const TicketFormProvider = ({children}:{children: React.ReactNode}) => {
     // Get ticket details from the local storege
@@ -17,11 +18,17 @@ const TicketFormProvider = ({children}:{children: React.ReactNode}) => {
                 url: ""
             }
 
-    const [ticketDetails, setTicketDetails] = useState<ITicket>(ticketDetailsFromStorage)
+    const [ticketDetails, setTicketDetails] = useState<ITicket>(ticketDetailsFromStorage);
 
-    const [isMounted, setIsMounted] = useState(false)
+    const [errors, setErrors] = useState<TErrors>({});
+
+    const updateErrors = (error: TErrors) => {
+        setErrors(error)
+    }
 
     // To fix hydration errors
+    const [isMounted, setIsMounted] = useState(false)
+
     useEffect(() => {
         setIsMounted(true)
     }, [])
@@ -48,7 +55,7 @@ const TicketFormProvider = ({children}:{children: React.ReactNode}) => {
         return <></>
     }
 
-    return <TicketFormContext.Provider value={{ticketDetails, updateTicketDetails, resetTicketDetails}}>{children}</TicketFormContext.Provider>
+    return <TicketFormContext.Provider value={{ticketDetails, updateTicketDetails, resetTicketDetails, errors, updateErrors}}>{children}</TicketFormContext.Provider>
 }
 
 export default TicketFormProvider;

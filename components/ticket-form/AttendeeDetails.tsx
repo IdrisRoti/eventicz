@@ -8,9 +8,15 @@ import TicketFormContext from '@/context/TicketFormContext';
 import { GoMail } from "react-icons/go";
 import { CldUploadButton, CloudinaryUploadWidgetResults } from 'next-cloudinary';
 import { useRouter } from 'next/navigation';
+import { z } from 'zod';
+
+export const formSchema = z.object({
+    name: z.string().min(2, "Minimum of 2 characters!"),
+    email: z.string().email("Please input a valid email!"),
+})
 
 const AttendeeDetails = () => {
-    const {ticketDetails, updateTicketDetails} = useContext(TicketFormContext);
+    const {ticketDetails, updateTicketDetails, errors} = useContext(TicketFormContext);
 
     const router = useRouter();
 
@@ -97,13 +103,19 @@ const AttendeeDetails = () => {
             <form className='flex flex-col gap-8'>
                 <div className="flex flex-col gap-2">
                     <label htmlFor="name">Enter your name *</label>
-                    <input value={ticketDetails.name} onChange={(e) => handleInputChange("name", e.target.value)} className='border border-borderLight p-3 rounded-xl bg-transparent outline-none focus:border-primary' type="text" id="name" />
+                    <input required value={ticketDetails.name} onChange={(e) => handleInputChange("name", e.target.value)} className='border border-borderLight p-3 rounded-xl bg-transparent outline-none focus:border-primary' type="text" id="name" />
+                    { errors.name && (
+                            <span className="text-red-500 text-xs">{errors.name}</span>
+                    )}
                 </div>
                 <div className="flex flex-col gap-2">
                     <label htmlFor="email">Enter your email *</label>
                     <div className="w-full relative">
                         <GoMail className='size-5 absolute top-1/2 -translate-y-1/2 left-3' />
-                        <input value={ticketDetails.email} onChange={(e) => handleInputChange("email", e.target.value)} placeholder='hello@avioflagos.io' className='w-full border border-borderLight p-3 pl-10 rounded-xl bg-transparent outline-none focus:border-primary' type="email" id="email" />
+                        <input required value={ticketDetails.email} onChange={(e) => handleInputChange("email", e.target.value)} placeholder='hello@avioflagos.io' className='w-full border border-borderLight p-3 pl-10 rounded-xl bg-transparent outline-none focus:border-primary' type="email" id="email" />
+                        { errors.email && (
+                            <span className="text-red-500 text-xs">{errors.email}</span>
+                        )}
                     </div>
                 </div>
                 <div className="flex flex-col gap-2">

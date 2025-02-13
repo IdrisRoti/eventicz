@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Roboto, Road_Rage } from "next/font/google";
 import "./globals.css";
 import TicketFormProvider from "@/providers/TicketFormProvider";
+import { Toaster } from "react-hot-toast";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -29,6 +30,7 @@ export default function RootLayout({
       >
         <TicketFormProvider>
           {children}
+          <Toaster position="top-right"/>
         </TicketFormProvider>
       </body>
     </html>
